@@ -1,6 +1,7 @@
 import './App.css';
 import React, { useEffect, useState } from "react";
 import Weather from './components/weather';
+import { Dimmer, Loader } from 'semantic-ui-react';
 
 function App() {
 
@@ -26,11 +27,17 @@ function App() {
   }, [lat,long])
 
   return (
-    <div style={{padding:"3%", backgroundColor: "#020615"}}>
+    <div style={{backgroundColor: "lightgray", height: "100vh", paddingTop: "25px"}}>
       {(typeof data.main != 'undefined') ? (
-        <Weather weatherData={data}/>
+        <div>
+          <Weather weatherData={data}/>
+        </div>
       ): (
-        <div>LOADING...</div>
+        <div>
+          <Dimmer active>
+            <Loader>Loading...</Loader>
+          </Dimmer>
+        </div>
       )}
     </div>
   );
